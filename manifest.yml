@@ -1,6 +1,6 @@
 ---
 applications:
-- name: chatrobotForJava
+- name: chartrobotforjava170303
   path: target/chatrobotForJava-0.0.1.war
   buildpack: liberty-for-java
   env:
