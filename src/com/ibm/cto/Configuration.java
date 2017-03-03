@@ -38,7 +38,7 @@ public class Configuration {
 	/**
 	 * TODO: After deploy your nodejs service for controlling robot car, fill in the host name here
 	 */
-	public String CAR_SERVICE_HOST = "";
+	//public String CAR_SERVICE_HOST = "";
 
 	/**
 	 * Load credentials and URLs
@@ -49,21 +49,22 @@ public class Configuration {
 		if(instance == null) {
 			instance = new Configuration();
 			String CONVERSATION_WORKSPACE_STRING = System.getenv("CONVERSATION_WORKSPACE_ID");
-			String CAR_SERVICE_HOST_STRING = System.getenv("CAR_SERVICE_HOST");
+			//String CAR_SERVICE_HOST_STRING = System.getenv("CAR_SERVICE_HOST");
 
-			if(CONVERSATION_WORKSPACE_STRING == null || CAR_SERVICE_HOST_STRING == null) {
+			//if(CONVERSATION_WORKSPACE_STRING == null || CAR_SERVICE_HOST_STRING == null) {
+			if(CONVERSATION_WORKSPACE_STRING == null ) {
 				return instance;
 			}
 			else {
 				instance.CONVERSATION_WORKSPACE_ID = CONVERSATION_WORKSPACE_STRING;
-				instance.CAR_SERVICE_HOST = CAR_SERVICE_HOST_STRING;
+				//instance.CAR_SERVICE_HOST = CAR_SERVICE_HOST_STRING;
 			}
 
 			System.out.println("### Conversation Workspace ID ###");
 			System.out.println(instance.CONVERSATION_WORKSPACE_ID);
 			System.out.println("### /Conversation Workspace ID ###");
 			System.out.println("### Car Host ###");
-			System.out.println(instance.CAR_SERVICE_HOST);
+			//System.out.println(instance.CAR_SERVICE_HOST);
 			System.out.println("### /Car Host ###");
 
 			JSONObject vcapConfig = getObjectSettings("VCAP_SERVICES");
