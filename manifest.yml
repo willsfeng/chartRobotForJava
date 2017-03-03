@@ -1,7 +1,7 @@
 ---
 applications:
 - name: chartrobotforjava170303
-  path: target/chatrobotForJava-0.0.1.war
+  path: target/chartrobotforjava170303-0.0.1.war
   buildpack: liberty-for-java
   env:
     CONVERSATION_WORKSPACE_ID: 4982306d-fb7e-40a8-87da-97dc5d9e97ae
