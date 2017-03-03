@@ -21,8 +21,8 @@ var conversation_result, is_wating = false, methods = {
 	chatbot: function () {
 		var $chatInput = $('.chat-window--message-input'),
 		$jsonPanel = $('#json-panel .base--textarea'),
-		$loading = $('.loader'), 
-		$mic = $('.ui-button-microphone');
+		$loading = $('.loader'); 
+		//$mic = $('.ui-button-microphone');
 
 		$chatInput.keyup(function(event){
 			if(event.keyCode === 13) {
@@ -34,7 +34,7 @@ var conversation_result, is_wating = false, methods = {
 		/**
 		 * Convert response context to car command
 		 */
-		var contextToCommand = function(conversation_result){
+		/**var contextToCommand = function(conversation_result){
 			var direction = '';
 			var entities = conversation_result.entities;
 			var intents = conversation_result.intents;
@@ -66,16 +66,16 @@ var conversation_result, is_wating = false, methods = {
 			}
 			return direction;
 		};
-
+*/
 		/**
 		 * Synthesize
 		 */
-		var synthesize = function(val) {
+		/**		var synthesize = function(val) {
 			var audio = new Audio();
 			audio.src = 'Synthesize?text=' + val;
 			audio.play();
 		};
-
+*/
 		/**
 		 * Perform conversation
 		 */
@@ -120,12 +120,12 @@ var conversation_result, is_wating = false, methods = {
 		        $chatInput.show();
 		        $chatInput[0].focus();
 
-		        synthesize(response);
+		        //synthesize(response);
 
 		        talk('WATSON', response); // show
 
-		        var command = contextToCommand(conversation_result);
-		        onSendingCommand(command);
+		        //var command = contextToCommand(conversation_result);
+		        //onSendingCommand(command);
 		      })
 		      .fail(function onError(error) {
 		        talk('WATSON', error.responseJSON ? error.responseJSON.error : error.statusText);
@@ -211,7 +211,7 @@ var conversation_result, is_wating = false, methods = {
 		/**
 		 * Speech recognition UI
 		 */
-		var changeUIState = function(isSpeaking) {
+		/**		var changeUIState = function(isSpeaking) {
 			if (isSpeaking) {
 				$loading.show();
 				$mic.addClass('active');
@@ -221,22 +221,22 @@ var conversation_result, is_wating = false, methods = {
 				$mic.removeClass('active');
 				$mic.val('Speak');
 			}
-		};
+		};*/
 
 		/**
 		 * Inovking Speech recognition
 		 */
-		var recognize = function(token) {
+		/**var recognize = function(token) {
 			return WatsonSpeech.SpeechToText.recognizeMicrophone({
 				token : token,
 				objectMode : true
 			});
 		};
-
+*/
 		/**
 		 * Obtain token of Speech services
 		 */
-		var initToken = function(val) {
+		/**var initToken = function(val) {
 			return $.ajax({
 				url : 'Token',
 				data : {
@@ -244,10 +244,10 @@ var conversation_result, is_wating = false, methods = {
 				}
 			});
 		};
-
+*/
 		var isSpeaking = false, stream = null, ttsToken = '', sttToken = '';
 
-		$mic.on('click', function(evt){
+		/**$mic.on('click', function(evt){
 			if(isSpeaking && stream){
 				stream.stop();
 				isSpeaking = false;
@@ -293,7 +293,7 @@ var conversation_result, is_wating = false, methods = {
 				});
 			}
 		});
-
+		
 		initToken('stt').then(function(t) {
 			sttToken = t;
 			converse('Hi Watson');
@@ -302,10 +302,12 @@ var conversation_result, is_wating = false, methods = {
 				$mic.show();
 			}
 		});
+		*/
+		converse('Hi Watson');
 		scrollToInput();
 
 		// car control
-		var socket = io.connect(carServiceHost);
+		/**		var socket = io.connect(carServiceHost);
 
 		socket.on("message", function (data) {
 			console.log("socket data: " + data);
@@ -360,6 +362,7 @@ var conversation_result, is_wating = false, methods = {
 			}
 			keys.parent().find('[ref='+command+']').addClass('active');
 		});
+		*/
 	}
 };
 
