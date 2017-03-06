@@ -20,9 +20,8 @@
 var conversation_result, is_wating = false, methods = {
 	chatbot: function () {
 		var $chatInput = $('.chat-window--message-input'),
-		$jsonPanel = $('#json-panel .base--textarea'),
+		//$jsonPanel = $('#json-panel .base--textarea'),
 		$loading = $('.loader'); 
-		//$mic = $('.ui-button-microphone');
 
 		$chatInput.keyup(function(event){
 			if(event.keyCode === 13) {
@@ -31,54 +30,6 @@ var conversation_result, is_wating = false, methods = {
 			}
 		});
 
-		/**
-		 * Convert response context to car command
-		 */
-		/**var contextToCommand = function(conversation_result){
-			var direction = '';
-			var entities = conversation_result.entities;
-			var intents = conversation_result.intents;
-			for(var index in intents){
-				var intent = intents[index];
-				if(intent.confidence > 0.7 && intent.intent === 'move'){
-					for(var key in entities){
-						var entity = entities[key];
-						if(entity.entity === 'direction') {
-							switch(entity.value) {
-							case 'right':
-								direction = 'd';
-								break;
-							case 'forward':
-								direction = 'w';
-								break;
-							case 'backward':
-								direction = 's';
-								break;
-							case 'left':
-								direction = 'a';
-								break;
-							}
-							break;
-						}
-					}
-					break;
-				}
-			}
-			return direction;
-		};
-*/
-		/**
-		 * Synthesize
-		 */
-		/**		var synthesize = function(val) {
-			var audio = new Audio();
-			audio.src = 'Synthesize?text=' + val;
-			audio.play();
-		};
-*/
-		/**
-		 * Perform conversation
-		 */
 		var converse = function(userText) {
 			if (is_wating) {
 				return;
@@ -108,7 +59,7 @@ var conversation_result, is_wating = false, methods = {
 
 		        $chatInput.val(''); // clear the text input
 
-		        $jsonPanel.html(JSON.stringify(conversation_result, null, 2));
+		        //$jsonPanel.html(JSON.stringify(conversation_result, null, 2));
 
 		        var texts = conversation_result.output ? conversation_result.output.text : [];
 		        if(texts.length == 0){
@@ -208,161 +159,11 @@ var conversation_result, is_wating = false, methods = {
 			$(idName).addClass('active');
 		});
 
-		/**
-		 * Speech recognition UI
-		 */
-		/**		var changeUIState = function(isSpeaking) {
-			if (isSpeaking) {
-				$loading.show();
-				$mic.addClass('active');
-				$mic.val('Speaking...');
-			} else {
-				$loading.hide();
-				$mic.removeClass('active');
-				$mic.val('Speak');
-			}
-		};*/
-
-		/**
-		 * Inovking Speech recognition
-		 */
-		/**var recognize = function(token) {
-			return WatsonSpeech.SpeechToText.recognizeMicrophone({
-				token : token,
-				objectMode : true
-			});
-		};
-*/
-		/**
-		 * Obtain token of Speech services
-		 */
-		/**var initToken = function(val) {
-			return $.ajax({
-				url : 'Token',
-				data : {
-					category : val
-				}
-			});
-		};
-*/
 		var isSpeaking = false, stream = null, ttsToken = '', sttToken = '';
 
-		/**$mic.on('click', function(evt){
-			if(isSpeaking && stream){
-				stream.stop();
-				isSpeaking = false;
-				changeUIState(isSpeaking);
-			}
-			else {
-				if(isSpeaking){
-					return;
-				}
-	
-				stream = recognize(sttToken);
-				isSpeaking = true;
-				changeUIState(isSpeaking);
-	
-				stream.on('data', function(data) {
-					console.log('data:');
-					console.log(data);
-					var transcript = data.alternatives[0].transcript;
-					$('.ui-transcription').html('<div class="text">'+transcript+'</div>');
-	
-					if(data.hasOwnProperty('final') && data['final']){
-						isSpeaking = false;
-						changeUIState(isSpeaking);
-						stream.stop();
-						converse(transcript);
-						$('.ui-transcription').text('');
-					}
-				});
-				stream.on('error', function(err) {
-					console.log(err);
-					isSpeaking = false;
-					changeUIState(isSpeaking);
-				});
-				stream.on('close', function(err) {
-					console.log(err);
-					isSpeaking = false;
-					changeUIState(isSpeaking);
-				});
-				stream.on('connection-close', function(err) {
-					console.log(err);
-					isSpeaking = false;
-					changeUIState(isSpeaking);
-				});
-			}
-		});
-		
-		initToken('stt').then(function(t) {
-			sttToken = t;
-			converse('Hi Watson');
-			var userAgent = window.navigator.userAgent.toLowerCase();
-			if(userAgent.indexOf('chrome') != -1 || userAgent.indexOf('firefox') != -1){
-				$mic.show();
-			}
-		});
-		*/
 		converse('Hi Watson');
 		scrollToInput();
 
-		// car control
-		/**		var socket = io.connect(carServiceHost);
-
-		socket.on("message", function (data) {
-			console.log("socket data: " + data);
-		});
-
-		var onSendingCommand = function(command){
-			if(command === '') {
-				return;
-			}
-			console.log(command);
-			socket.emit("String", command);
-		};
-		var keyToCommand = function(key){
-			var direction = '';
-			switch(key){
-
-			case 'ArrowUp':
-				direction = 'w';
-				break;
-
-			case 'ArrowLeft':
-				direction = 'a';
-				break;
-
-			case 'ArrowDown':
-				direction = 's';
-				break;
-
-			case 'ArrowRight':
-				direction = 'd';
-				break;
-			}
-			return direction;
-		};
-
-		var keys = $('.car-controller a');
-		keys.on('click', function(evt){
-			var command = $(this).attr('ref');
-			// call Socket-IO
-			onSendingCommand(command);
-		});
-
-		$(document).on('keyup', function(evt){
-			var command = keyToCommand(evt.key);
-			onSendingCommand(command);
-			keys.removeClass('active');
-		});
-		$(document).on('keydown', function(evt){
-			var command = keyToCommand(evt.key);
-			if(command === ''){
-				return;
-			}
-			keys.parent().find('[ref='+command+']').addClass('active');
-		});
-		*/
 	}
 };
 
