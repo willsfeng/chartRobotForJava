@@ -27,7 +27,6 @@
 	</header>
 	<div class="_demo--container">
 		<article class="_demo--content base--article page" ref="chatbot">
-			<div class="_content--dialog">
 				<div class="chat-window">
 					<div class="chat-box">
 						<div class="chat-box--pane">
@@ -65,10 +64,7 @@
 					<input type="text" placeholder="Type a response and hit enter" value="" autocomplete="off" class="chat-window--message-input base--text-input ui-input-message" />
 					<!--input type="button" value="Speak" class="base--button ui-button-microphone" /-->
 				</div>
-			</div>
-
 		</article>
-
 	</div>
 	<script src="js/jquery-3.1.1.min.js"></script>
   	<script src="js/talk-to-watson.js"></script>
