@@ -62,7 +62,6 @@
 					</div>
 	
 					<input type="text" placeholder="Type a response and hit enter" value="" autocomplete="off" class="chat-window--message-input base--text-input ui-input-message" />
-					<!--input type="button" value="Speak" class="base--button ui-button-microphone" /-->
 				</div>
 		</article>
 	</div>
