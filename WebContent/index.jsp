@@ -67,23 +67,6 @@
 				</div>
 			</div>
 
-			<div class="_content--data">
-				<div class="tab-panels" role="tabpanel">
-					<ul class="tab-panels--tab-list" role="tablist">
-						<li class="tab-panels--tab-list-item base-li" role="presentation">
-							<a class="tab-panels--tab base--a" href="#json-panel" aria-controls="json" role="tab">JSON</a>
-						</li>
-					</ul>
-					<div class="tab-panels--tab-content">
-						<div id="json-panel" class="tab-panels--tab-pane" role="tab-panel">
-							<textarea class="base--textarea"></textarea>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-
-			<div class="ui-transcription"></div>
 		</article>
 
 	</div>
