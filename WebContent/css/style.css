@@ -1154,12 +1154,12 @@ pre[class*=" language-"] {
 
 @media (min-width: 768px) {
   ._demo--container {
-    width: 90%px;
+    width: 760px;
     margin: 0rem auto; } }
 
 @media (min-width: 1200px) {
   ._demo--container {
-    width: 90%px;
+    width: 992px;
     margin: 0rem auto; } }
 
 ._demo--heading {
