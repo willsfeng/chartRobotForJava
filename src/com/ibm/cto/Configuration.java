@@ -27,8 +27,8 @@ public class Configuration {
 	public String SPEECH_TO_TEXT_USERNAME = "";
 	public String SPEECH_TO_TEXT_PASSWORD = "";
 
-	public String CONVERSATION_USERNAME = "";
-	public String CONVERSATION_PASSWORD = "";
+	public String CONVERSATION_USERNAME = "decea676-8965-4acf-9898-8511d4b3bc84";
+	public String CONVERSATION_PASSWORD = "PjBwfAtkhkel";
 
 	/**
 	 * TODO: Get Workspace ID from IBM Watson Conversation: https://ibmwatsonconversation.com
