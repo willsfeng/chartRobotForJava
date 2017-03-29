@@ -1,7 +1,7 @@
 ---
 applications:
-- name: watsonConversationForTest
+- name: JavaForWatson
   path: target/watsonConversationForTest-0.0.1.war
   buildpack: liberty-for-java
   env:
-    CONVERSATION_WORKSPACE_ID: 4982306d-fb7e-40a8-87da-97dc5d9e97ae
+    CONVERSATION_WORKSPACE_ID: 8eb45c94-d892-4a25-9c22-a5c7505e04a1
