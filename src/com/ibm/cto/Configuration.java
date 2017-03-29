@@ -16,7 +16,7 @@ public class Configuration {
 
 	public String SPEECH_TO_TEXT_API_URL = "https://stream.watsonplatform.net/speech-to-text/api";
 	public String TEXT_TO_SPEECH_API_URL = "https://stream.watsonplatform.net/text-to-speech/api";
-	public String CONVERSATION_API_URL = "https://gateway.watsonplatform.net/conversation/api";
+	public String CONVERSATION_API_URL = "https://gateway-fra.watsonplatform.net/conversation/api";
 
 	/**
 	 * TODO: If you're testing this application locally, please get the credentials from Bluemix
